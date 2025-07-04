@@ -28,54 +28,56 @@
         /// </summary>
         private void InitializeComponent()
         {
-            textBox1 = new TextBox();
-            button1 = new Button();
-            Tasks = new ListBox();
-            button2 = new Button();
+            TaskToGo = new TextBox();
+            Add = new Button();
+            AllTasks = new ListBox();
+            Delete = new Button();
             SuspendLayout();
             // 
-            // textBox1
+            // TaskToGo
             // 
-            textBox1.Location = new Point(90, 85);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(437, 27);
-            textBox1.TabIndex = 0;
+            TaskToGo.Location = new Point(90, 85);
+            TaskToGo.Name = "TaskToGo";
+            TaskToGo.Size = new Size(437, 27);
+            TaskToGo.TabIndex = 0;
             // 
-            // button1
+            // Add
             // 
-            button1.Location = new Point(593, 85);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 1;
-            button1.Text = "Add";
-            button1.UseVisualStyleBackColor = true;
+            Add.Location = new Point(593, 85);
+            Add.Name = "Add";
+            Add.Size = new Size(117, 29);
+            Add.TabIndex = 1;
+            Add.Text = "Add";
+            Add.UseVisualStyleBackColor = true;
+            Add.Click += Add_Click;
             // 
-            // Tasks
+            // AllTasks
             // 
-            Tasks.FormattingEnabled = true;
-            Tasks.Location = new Point(90, 145);
-            Tasks.Name = "Tasks";
-            Tasks.Size = new Size(437, 244);
-            Tasks.TabIndex = 2;
+            AllTasks.FormattingEnabled = true;
+            AllTasks.Location = new Point(90, 145);
+            AllTasks.Name = "AllTasks";
+            AllTasks.Size = new Size(437, 244);
+            AllTasks.TabIndex = 2;
             // 
-            // button2
+            // Delete
             // 
-            button2.Location = new Point(593, 134);
-            button2.Name = "button2";
-            button2.Size = new Size(94, 29);
-            button2.TabIndex = 3;
-            button2.Text = "Delete";
-            button2.UseVisualStyleBackColor = true;
+            Delete.Location = new Point(593, 134);
+            Delete.Name = "Delete";
+            Delete.Size = new Size(117, 29);
+            Delete.TabIndex = 3;
+            Delete.Text = "Delete";
+            Delete.UseVisualStyleBackColor = true;
+            Delete.Click += Delete_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(button2);
-            Controls.Add(Tasks);
-            Controls.Add(button1);
-            Controls.Add(textBox1);
+            Controls.Add(Delete);
+            Controls.Add(AllTasks);
+            Controls.Add(Add);
+            Controls.Add(TaskToGo);
             Name = "Form1";
             Text = "Form1";
             ResumeLayout(false);
@@ -84,9 +86,9 @@
 
         #endregion
 
-        private TextBox textBox1;
-        private Button button1;
-        private ListBox Tasks;
-        private Button button2;
+        private TextBox TaskToGo;
+        private Button Add;
+        private ListBox AllTasks;
+        private Button Delete;
     }
 }
