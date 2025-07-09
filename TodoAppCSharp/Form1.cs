@@ -27,7 +27,7 @@ namespace TodoAppCSharp
                 AllTasks.Items.Add(newTask);
                 TaskToGo.Clear();
 
-                TaskManager.SaveTasks(tasks); // 💾 Save to JSON
+                TaskManager.SaveTasks(tasks); //  Save to JSON
             }
         }
 
@@ -39,7 +39,23 @@ namespace TodoAppCSharp
                 tasks.RemoveAt(selectedIndex);
                 AllTasks.Items.RemoveAt(selectedIndex);
 
-                TaskManager.SaveTasks(tasks); // 💾 Save updated list
+                TaskManager.SaveTasks(tasks); //  Save updated list
+            }
+        }
+
+        private void buttonToggleDone_Click(object sender, EventArgs e)
+        {
+            int selectedIndex = AllTasks.SelectedIndex;
+            if (selectedIndex >= 0 && selectedIndex < tasks.Count)
+            {
+                var task = tasks[selectedIndex];
+                task.IsDone = !task.IsDone;
+
+                // Update the ListBox item
+                AllTasks.Items[selectedIndex] = tasks[selectedIndex]; ; // Force refresh
+                AllTasks.Items[selectedIndex] = task;
+
+                TaskManager.SaveTasks(tasks);
             }
         }
 
