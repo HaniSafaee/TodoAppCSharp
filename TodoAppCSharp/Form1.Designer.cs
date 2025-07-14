@@ -37,16 +37,16 @@
             // 
             // TaskToGo
             // 
-            TaskToGo.Location = new Point(90, 85);
+            TaskToGo.Location = new Point(78, 85);
             TaskToGo.Name = "TaskToGo";
-            TaskToGo.Size = new Size(437, 27);
+            TaskToGo.Size = new Size(449, 27);
             TaskToGo.TabIndex = 0;
             // 
             // Add
             // 
-            Add.Location = new Point(593, 85);
+            Add.Location = new Point(577, 85);
             Add.Name = "Add";
-            Add.Size = new Size(117, 29);
+            Add.Size = new Size(155, 29);
             Add.TabIndex = 1;
             Add.Text = "Add";
             Add.UseVisualStyleBackColor = true;
@@ -55,16 +55,17 @@
             // AllTasks
             // 
             AllTasks.FormattingEnabled = true;
-            AllTasks.Location = new Point(90, 145);
+            AllTasks.Location = new Point(78, 145);
             AllTasks.Name = "AllTasks";
-            AllTasks.Size = new Size(437, 244);
+            AllTasks.Size = new Size(449, 244);
             AllTasks.TabIndex = 2;
+            AllTasks.SelectedIndexChanged += AllTasks_SelectedIndexChanged;
             // 
             // Delete
             // 
-            Delete.Location = new Point(593, 145);
+            Delete.Location = new Point(577, 145);
             Delete.Name = "Delete";
-            Delete.Size = new Size(117, 29);
+            Delete.Size = new Size(155, 29);
             Delete.TabIndex = 3;
             Delete.Text = "Delete";
             Delete.UseVisualStyleBackColor = true;
@@ -72,11 +73,11 @@
             // 
             // buttonToggleDone
             // 
-            buttonToggleDone.Location = new Point(593, 191);
+            buttonToggleDone.Location = new Point(577, 191);
             buttonToggleDone.Name = "buttonToggleDone";
-            buttonToggleDone.Size = new Size(117, 29);
+            buttonToggleDone.Size = new Size(155, 29);
             buttonToggleDone.TabIndex = 4;
-            buttonToggleDone.Text = "Mark Done";
+            buttonToggleDone.Text = "Mark as Done";
             buttonToggleDone.UseVisualStyleBackColor = true;
             buttonToggleDone.Click += buttonToggleDone_Click;
             // 

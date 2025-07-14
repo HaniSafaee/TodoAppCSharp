@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Windows.Forms;
-
-namespace TodoAppCSharp
+﻿namespace TodoAppCSharp
 {
     public partial class Form1 : Form
     {
@@ -48,7 +45,7 @@ namespace TodoAppCSharp
             int selectedIndex = AllTasks.SelectedIndex;
             if (selectedIndex >= 0 && selectedIndex < tasks.Count)
             {
-                var task = tasks[selectedIndex];
+                Task task = tasks[selectedIndex];
                 task.IsDone = !task.IsDone;
 
                 // Update the ListBox item
@@ -56,8 +53,27 @@ namespace TodoAppCSharp
                 AllTasks.Items[selectedIndex] = task;
 
                 TaskManager.SaveTasks(tasks);
+                buttonToggleDone.Text = task.IsDone ? "Mark as Undone" : "Mark as Done";
+            }
+            else
+            {
+                MessageBox.Show("Please select a task.");
             }
         }
 
+        private void AllTasks_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectedIndex = AllTasks.SelectedIndex;
+
+            if (selectedIndex >= 0 && selectedIndex < tasks.Count)
+            {
+                var task = tasks[selectedIndex];
+                buttonToggleDone.Text = task.IsDone ? "Mark as Undone" : "Mark as Done";
+            }
+            else
+            {
+                buttonToggleDone.Text = "Mark as Done";
+            }
+        }
     }
 }
