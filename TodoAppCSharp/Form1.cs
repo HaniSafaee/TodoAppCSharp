@@ -1,4 +1,6 @@
-﻿namespace TodoAppCSharp
+﻿using System.Windows.Forms;
+
+namespace TodoAppCSharp
 {
     public partial class Form1 : Form
     {
@@ -7,6 +9,7 @@
         public Form1()
         {
             InitializeComponent();
+            Save.Enabled = false;
             tasks = TaskManager.LoadTasks();
             foreach (var task in tasks)
             {
@@ -75,5 +78,36 @@
                 buttonToggleDone.Text = "Mark as Done";
             }
         }
+        private int editingIndex = -1;
+        private void Edit_Click(object sender, EventArgs e)
+        {
+            if (AllTasks.SelectedIndex != -1)
+            {
+                editingIndex = AllTasks.SelectedIndex;
+                Task selectedTask = tasks[editingIndex];
+                TaskToGo.Text = selectedTask.Description;
+                Save.Enabled = true;
+                Add.Enabled = false;
+                Delete.Enabled = false;
+                buttonToggleDone.Enabled = false;
+                Edit.Enabled = false;
+            }
+        }
+        private void Save_Click(object sender, EventArgs e)
+        {
+            if (editingIndex != -1 && !string.IsNullOrWhiteSpace(TaskToGo.Text))
+            {
+                tasks[editingIndex].Description = TaskToGo.Text.Trim();
+                editingIndex = -1;
+                TaskToGo.Clear();
+                Save.Enabled = false;
+                Add.Enabled = true;
+                Delete.Enabled = true;
+                buttonToggleDone.Enabled = true;
+                Edit.Enabled = true;
+                TaskManager.SaveTasks(tasks);
+            }
+        }
+
     }
 }

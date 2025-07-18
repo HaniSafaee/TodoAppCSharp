@@ -33,6 +33,8 @@
             AllTasks = new ListBox();
             Delete = new Button();
             buttonToggleDone = new Button();
+            Edit = new Button();
+            Save = new Button();
             SuspendLayout();
             // 
             // TaskToGo
@@ -81,11 +83,33 @@
             buttonToggleDone.UseVisualStyleBackColor = true;
             buttonToggleDone.Click += buttonToggleDone_Click;
             // 
+            // Edit
+            // 
+            Edit.Location = new Point(577, 238);
+            Edit.Name = "Edit";
+            Edit.Size = new Size(155, 29);
+            Edit.TabIndex = 5;
+            Edit.Text = "Edit";
+            Edit.UseVisualStyleBackColor = true;
+            Edit.Click += Edit_Click;
+            // 
+            // Save
+            // 
+            Save.Location = new Point(577, 288);
+            Save.Name = "Save";
+            Save.Size = new Size(155, 29);
+            Save.TabIndex = 6;
+            Save.Text = "Save";
+            Save.UseVisualStyleBackColor = true;
+            Save.Click += Save_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(Save);
+            Controls.Add(Edit);
             Controls.Add(buttonToggleDone);
             Controls.Add(Delete);
             Controls.Add(AllTasks);
@@ -104,5 +128,7 @@
         private ListBox AllTasks;
         private Button Delete;
         private Button buttonToggleDone;
+        private Button Edit;
+        private Button Save;
     }
 }
