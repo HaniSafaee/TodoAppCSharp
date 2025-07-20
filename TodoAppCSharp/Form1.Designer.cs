@@ -35,6 +35,8 @@
             buttonToggleDone = new Button();
             Edit = new Button();
             Save = new Button();
+            Import = new Button();
+            Export = new Button();
             SuspendLayout();
             // 
             // TaskToGo
@@ -75,7 +77,7 @@
             // 
             // buttonToggleDone
             // 
-            buttonToggleDone.Location = new Point(577, 191);
+            buttonToggleDone.Location = new Point(577, 188);
             buttonToggleDone.Name = "buttonToggleDone";
             buttonToggleDone.Size = new Size(155, 29);
             buttonToggleDone.TabIndex = 4;
@@ -85,7 +87,7 @@
             // 
             // Edit
             // 
-            Edit.Location = new Point(577, 238);
+            Edit.Location = new Point(577, 231);
             Edit.Name = "Edit";
             Edit.Size = new Size(155, 29);
             Edit.TabIndex = 5;
@@ -95,7 +97,7 @@
             // 
             // Save
             // 
-            Save.Location = new Point(577, 288);
+            Save.Location = new Point(577, 274);
             Save.Name = "Save";
             Save.Size = new Size(155, 29);
             Save.TabIndex = 6;
@@ -103,11 +105,33 @@
             Save.UseVisualStyleBackColor = true;
             Save.Click += Save_Click;
             // 
+            // Import
+            // 
+            Import.Location = new Point(577, 317);
+            Import.Name = "Import";
+            Import.Size = new Size(155, 29);
+            Import.TabIndex = 7;
+            Import.Text = "Import";
+            Import.UseVisualStyleBackColor = true;
+            Import.Click += Import_Click;
+            // 
+            // Export
+            // 
+            Export.Location = new Point(577, 360);
+            Export.Name = "Export";
+            Export.Size = new Size(155, 29);
+            Export.TabIndex = 8;
+            Export.Text = "Export";
+            Export.UseVisualStyleBackColor = true;
+            Export.Click += Export_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(Export);
+            Controls.Add(Import);
             Controls.Add(Save);
             Controls.Add(Edit);
             Controls.Add(buttonToggleDone);
@@ -130,5 +154,7 @@
         private Button buttonToggleDone;
         private Button Edit;
         private Button Save;
+        private Button Import;
+        private Button Export;
     }
 }

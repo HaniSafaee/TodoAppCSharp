@@ -1,4 +1,7 @@
-﻿using System.Windows.Forms;
+﻿using System.Diagnostics;
+using System.IO;
+using System.Text.Json;
+using System.Windows.Forms;
 
 namespace TodoAppCSharp
 {
@@ -106,6 +109,52 @@ namespace TodoAppCSharp
                 buttonToggleDone.Enabled = true;
                 Edit.Enabled = true;
                 TaskManager.SaveTasks(tasks);
+            }
+        }
+        private void ExportToJson(string path)
+        {
+            var json = JsonSerializer.Serialize(tasks);
+            File.WriteAllText(path, json);
+        }
+        private void ImportFromJson(string path)
+        {
+            if (File.Exists(path))
+            {
+                var json = File.ReadAllText(path);
+                tasks = JsonSerializer.Deserialize<List<Task>>(json);
+                AllTasks.Items.Clear();
+                foreach (var task in tasks)
+                {
+                    AllTasks.Items.Add(task);
+                }
+                TaskManager.SaveTasks(tasks);
+            }
+        }
+
+        private void Import_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "JSON Files (*.json)|*.json|All Files (*.*)|*.*";
+            openFileDialog.Title = "Select a JSON file to import";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                ImportFromJson(openFileDialog.FileName);
+                MessageBox.Show("Tasks imported successfully!");
+            }
+        }
+
+
+        private void Export_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "JSON Files (*.json)|*.json|All Files (*.*)|*.*";
+            saveFileDialog.Title = "Save tasks to JSON";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                ExportToJson(saveFileDialog.FileName);
+                MessageBox.Show("Tasks exported successfully!");
             }
         }
 
