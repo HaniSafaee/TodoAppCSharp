@@ -22,27 +22,47 @@ namespace TodoAppCSharp
 
         private void Add_Click(object sender, EventArgs e)
         {
-            string text = TaskToGo.Text.Trim();
-            if (!string.IsNullOrEmpty(text))
+            try
             {
-                Task newTask = new Task { Description = text, IsDone = false };
-                tasks.Add(newTask);
-                AllTasks.Items.Add(newTask);
-                TaskToGo.Clear();
-
-                TaskManager.SaveTasks(tasks); //  Save to JSON
+                string text = TaskToGo.Text.Trim();
+                if (!string.IsNullOrEmpty(text))
+                {
+                    Task newTask = new Task { Description = text, IsDone = false };
+                    tasks.Add(newTask);
+                    AllTasks.Items.Add(newTask);
+                    TaskToGo.Clear();
+                    TaskManager.SaveTasks(tasks);
+                }
+                else
+                {
+                    MessageBox.Show("Please enter a task description.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while adding the task:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void Delete_Click(object sender, EventArgs e)
         {
-            int selectedIndex = AllTasks.SelectedIndex;
-            if (selectedIndex >= 0)
+            try
             {
-                tasks.RemoveAt(selectedIndex);
-                AllTasks.Items.RemoveAt(selectedIndex);
-
-                TaskManager.SaveTasks(tasks); //  Save updated list
+                int selectedIndex = AllTasks.SelectedIndex;
+                if (selectedIndex >= 0)
+                {
+                    tasks.RemoveAt(selectedIndex);
+                    AllTasks.Items.RemoveAt(selectedIndex);
+                    TaskManager.SaveTasks(tasks);
+                }
+                else
+                {
+                    MessageBox.Show("Please select a task to delete.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error deleting task:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -113,21 +133,41 @@ namespace TodoAppCSharp
         }
         private void ExportToJson(string path)
         {
-            var json = JsonSerializer.Serialize(tasks);
-            File.WriteAllText(path, json);
+            try
+            {
+                var json = JsonSerializer.Serialize(tasks);
+                File.WriteAllText(path, json);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to export to JSON:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void ImportFromJson(string path)
         {
-            if (File.Exists(path))
+            try
             {
-                var json = File.ReadAllText(path);
-                tasks = JsonSerializer.Deserialize<List<Task>>(json);
-                AllTasks.Items.Clear();
-                foreach (var task in tasks)
+                if (File.Exists(path))
                 {
-                    AllTasks.Items.Add(task);
+                    var json = File.ReadAllText(path);
+                    var importedTasks = JsonSerializer.Deserialize<List<Task>>(json);
+                    if (importedTasks != null)
+                    {
+                        tasks = importedTasks;
+                        AllTasks.Items.Clear();
+                        foreach (var task in tasks)
+                            AllTasks.Items.Add(task);
+                        TaskManager.SaveTasks(tasks);
+                    }
+                    else
+                    {
+                        MessageBox.Show("The file is empty or not a valid task list.", "Import Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
-                TaskManager.SaveTasks(tasks);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to import JSON:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -143,8 +183,6 @@ namespace TodoAppCSharp
                 MessageBox.Show("Tasks imported successfully!");
             }
         }
-
-
         private void Export_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
