@@ -25,15 +25,7 @@ A simple to-do list desktop application built with C# and Windows Forms.
 
 3. Build and run the project using the "Start" button in Visual Studio.
 
-## Project Structure
-TodoAppCSharp/
-├── Form1.cs // Main UI and logic
-├── Task.cs // Task model
-├── TaskManager.cs // Handles saving/loading tasks from JSON
-├── TodoAppCSharp.sln // Visual Studio solution file
-├── Program.cs // App entry point
-├── README.md // Project instructions
-└── bin/ & obj/ // Build outputs (auto-generated)
+<pre lang="markdown"> ## Project Structure ``` TodoAppCSharp/ ├── Form1.cs # Main UI and logic ├── Task.cs # Task model ├── TaskManager.cs # Handles saving/loading tasks from JSON ├── TodoAppCSharp.sln # Visual Studio solution file ├── Program.cs # App entry point ├── README.md # Project instructions └── bin/ & obj/ # Build outputs (auto-generated) ``` </pre>
 
 ## Notes
 
